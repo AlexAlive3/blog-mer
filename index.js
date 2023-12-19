@@ -1,5 +1,7 @@
 import express from "express";
 import multer from "multer";
+import cors from "cors";
+
 import mongoose from "mongoose";
 
 import { registerValidation, loginValidation, postCreateValidation } from './validations.js';
@@ -27,6 +29,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.use(express.json());
+app.use(cors());
 //говорим экспрессу, что если ему приходит 
 //любой запрос на uploads, то из библиотеки 
 //нужно взять функцию static проверить есть ли 
