@@ -46,7 +46,10 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
     });
 }); //загрузка изображений
 
+app.get('/tags', PostController.getLastTags); 
+
 app.get('/posts', PostController.getAll); //получить все статьи
+app.get('/posts/tags', PostController.getLastTags); //получить теги
 app.get('/posts/:id', PostController.getOne); //получить одну статью
 app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create); //создать статью
 app.delete('/posts/:id', checkAuth, PostController.remove); //удалить статью
