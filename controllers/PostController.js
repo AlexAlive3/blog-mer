@@ -59,7 +59,6 @@ export const getOne = async (req, res) => {
                   message: "Не удалось получить статью",
                 });
               }
-            });
 }
 
 export const remove = async (req, res) => {
