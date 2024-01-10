@@ -17,7 +17,8 @@ export const getLastTags =  async (req, res) => {
 export const getAll = async (req, res) => {
     try {
         const posts = await PostModel.find().populate('user').exec();
-
+        //const posts = await PostModel.find().populate({ path: "user", select: ["name", "avatar"] }).exec();
+        
         res.json(posts);
     } catch (err) {
         console.log(err);
@@ -41,7 +42,7 @@ export const getOne = async (req, res) => {
             {
               returnDocument: "after", //вернуть актуальный документ после обновления
             }
-          )
+          ).populate("user")
             .then((doc) => {
               if (!doc) {
                 return res.status(404).json({
@@ -59,6 +60,7 @@ export const getOne = async (req, res) => {
                   message: "Не удалось получить статью",
                 });
               }
+            });
 }
 
 export const remove = async (req, res) => {
